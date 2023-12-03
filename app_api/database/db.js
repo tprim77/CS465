@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const host = process.env.DB_HOST || '127.0.0.1'
-const dbURI = 'mongodb://${host}/travlr';                  
+const dbURI = 'mongodb://127.0.0.1:27017/travlr';              
 const readLine = require('readline'); 
 
 //avoid 'current Server Discovery and Monitoring engine is depredcated'
@@ -38,7 +38,7 @@ if (process.platform == 'win32') {
   
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close( () => {
-        console.log(`Mongoose disconnected through ${msg}`);
+        console.log('Mongoose disconnected through ${msg}');
         callback();
     });
 };
@@ -65,4 +65,4 @@ const gracefulShutdown = (msg, callback) => {
   connect();
   
   // Mongoose schema
-  require('./travlr');
+  require('./models/travlr');
